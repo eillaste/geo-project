@@ -1,5 +1,11 @@
 # Geo Project
-
+## Cloning the project
+```
+git clone https://github.com/eillaste/geo-project.git
+```
+```
+cd geo-project
+```
 ## Project setup
 ```
 npm install
