@@ -10,15 +10,9 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Go to:
+http://localhost:8080/geo
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Also available online:
+https://www.trialda.com/geo/
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
