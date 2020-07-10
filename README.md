@@ -1,4 +1,4 @@
-# my-project
+# Geo Project
 
 ## Project setup
 ```
