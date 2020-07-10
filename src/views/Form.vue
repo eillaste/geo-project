@@ -1,24 +1,28 @@
 <template>
   <div>
-    <h1>Search Form</h1>
+    <div style="display:flex">
+      <h1 style="margin-right:10px">Search Form</h1>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon color="blue lighten-4" dark v-bind="attrs" v-on="on">mdi-help-circle</v-icon>
+        </template>
+        <span>
+          Search is not case-sensitive. By default, the search will return
+          exact matches
+        </span>
+      </v-tooltip>
+    </div>
+
     <v-form v-model="valid">
       <v-container>
         <v-row>
           <v-col cols="12" md="4" style="display:flex">
-            <v-text-field
-              v-model="fields.country__value_en"
-              label="Country"
-              required
-            ></v-text-field
-            ><Overflow v-on:choose_filter="filters[1] = $event"></Overflow>
+            <v-text-field v-model="fields.country__value_en" label="Country" required></v-text-field>
+            <Overflow v-on:choose_filter="filters[1] = $event"></Overflow>
           </v-col>
 
           <v-col cols="12" md="4" style="display:flex">
-            <v-text-field
-              v-model="fields.maakond__maakond_en"
-              label="County"
-              required
-            ></v-text-field>
+            <v-text-field v-model="fields.maakond__maakond_en" label="County" required></v-text-field>
             <Overflow v-on:choose_filter="filters[2] = $event"></Overflow>
           </v-col>
 
@@ -33,31 +37,17 @@
           </v-col>
 
           <v-col cols="12" md="4" style="display:flex">
-            <v-text-field
-              v-model="fields.locality_en"
-              label="Locality"
-              required
-            ></v-text-field>
+            <v-text-field v-model="fields.locality_en" label="Locality" required></v-text-field>
             <Overflow v-on:choose_filter="filters[4] = $event"></Overflow>
           </v-col>
 
           <v-col cols="12" md="4" style="display:flex">
-            <v-select
-              v-model="fields.type__value_en"
-              :items="items"
-              label="Type"
-            ></v-select>
+            <v-select v-model="fields.type__value_en" :items="items" label="Type"></v-select>
             <Overflow v-on:choose_filter="filters[5] = $event"></Overflow>
           </v-col>
         </v-row>
       </v-container>
-      <v-btn
-        class="mr-4"
-        color="light-blue darken-3"
-        style="color:white"
-        @click="submit"
-        >submit</v-btn
-      >
+      <v-btn class="mr-4" color="light-blue darken-3" style="color:white" @click="submit">submit</v-btn>
       <h1 v-if="this.count === table_data.length">
         <DataTable
           class="v-responsive"
@@ -78,11 +68,11 @@ import Overflow from "../components/Overflow";
 export default {
   data: () => ({
     filters: {
-      1: "iexact",
-      2: "iexact",
-      3: "iexact",
-      4: "iexact",
-      5: "iexact"
+      1: "exact",
+      2: "exact",
+      3: "exact",
+      4: "exact",
+      5: "exact"
     },
 
     fetched: false,
@@ -126,6 +116,7 @@ export default {
           queryString +=
             key +
             "__" +
+            "i" +
             this.filters[Object.keys(this.filters)[i]] +
             "=" +
             value +

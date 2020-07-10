@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.url.length > 0">
-    <l-map style="height: 350px" :zoom="zoom" :center="center">
+    <l-map style="height: 350px;z-index: 0;" :zoom="zoom" :center="center">
       <l-tile-layer :url="url"></l-tile-layer>
       <l-marker :lat-lng="markerLatLng"></l-marker>
     </l-map>
